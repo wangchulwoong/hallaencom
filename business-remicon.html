@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>레미콘 사업 - 한라엔컴</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Playfair+Display:wght@400;700;900&family=Montserrat:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-dark: #1a1a2e;
+            --primary-gray: #2d3142;
+            --accent-blue: #0066cc;
+            --accent-orange: #ff6b35;
+            --concrete-light: #e8e8e8;
+            --concrete-medium: #a8a8a8;
+            --white: #ffffff;
+            --transition-smooth: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', -apple-system, sans-serif;
+            background: var(--primary-dark);
+            color: var(--white);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, var(--white), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            position: relative;
+            transition: var(--transition-smooth);
+            letter-spacing: 0.05em;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-blue);
+            transition: var(--transition-smooth);
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .business-hero {
+            position: relative;
+            height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #1a1a2e, #2d3142);
+            overflow: hidden;
+            margin-top: 80px;
+        }
+
+        .business-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                url('data:image/svg+xml,%3Csvg width="100" height="100" xmlns="http://www.w3.org/2000/svg"%3E%3Cpattern id="concrete" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"%3E%3Ccircle cx="2" cy="2" r="1" fill="%23888"/%3E%3Ccircle cx="12" cy="8" r="1.5" fill="%23666"/%3E%3Ccircle cx="18" cy="15" r="1" fill="%23999"/%3E%3C/pattern%3E%3Crect width="100" height="100" fill="url(%23concrete)"/%3E%3C/svg%3E'),
+                linear-gradient(135deg, rgba(0, 102, 204, 0.3), rgba(255, 107, 53, 0.2));
+            opacity: 0.15;
+        }
+
+        .business-hero-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            max-width: 1200px;
+            padding: 0 2rem;
+        }
+
+        .business-label {
+            font-size: 0.9rem;
+            letter-spacing: 0.3em;
+            color: var(--accent-orange);
+            margin-bottom: 2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .business-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3.5rem, 7vw, 6rem);
+            font-weight: 900;
+            margin-bottom: 2rem;
+            line-height: 1.1;
+        }
+
+        .business-subtitle {
+            font-size: 1.4rem;
+            color: var(--concrete-light);
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        /* Main Content */
+        .main-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 8rem 5%;
+        }
+
+        /* Intro Section */
+        .intro-section {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 6rem;
+            margin-bottom: 10rem;
+            align-items: center;
+        }
+
+        .intro-text h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            line-height: 1.3;
+        }
+
+        .intro-text p {
+            font-size: 1.1rem;
+            line-height: 2;
+            color: var(--concrete-light);
+            margin-bottom: 1.5rem;
+        }
+
+        .intro-image {
+            position: relative;
+            height: 500px;
+            border-radius: 20px;
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(0, 102, 204, 0.3), rgba(255, 107, 53, 0.3));
+        }
+
+        .intro-image::before {
+            content: '🏗️';
+            font-size: 15rem;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0.15;
+        }
+
+        /* Products Section */
+        .products-section {
+            margin-bottom: 10rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-description {
+            font-size: 1.1rem;
+            color: var(--concrete-medium);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+        }
+
+        .product-card {
+            background: linear-gradient(135deg, rgba(0, 102, 204, 0.05), rgba(45, 49, 66, 0.5));
+            border-radius: 20px;
+            padding: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 107, 53, 0.1), transparent);
+            opacity: 0;
+            transition: var(--transition-smooth);
+        }
+
+        .product-card:hover::before {
+            opacity: 1;
+            animation: rotate 15s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-orange);
+            box-shadow: 0 30px 60px rgba(255, 107, 53, 0.3);
+        }
+
+        .product-icon {
+            font-size: 4rem;
+            margin-bottom: 2rem;
+            display: block;
+        }
+
+        .product-card h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .product-card .grade {
+            color: var(--accent-orange);
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .product-card p {
+            color: var(--concrete-medium);
+            line-height: 1.8;
+            position: relative;
+            z-index: 1;
+        }
+
+        .product-card ul {
+            list-style: none;
+            margin-top: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .product-card li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: var(--concrete-light);
+        }
+
+        .product-card li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--accent-orange);
+        }
+
+        /* Features Section */
+        .features-section {
+            background: linear-gradient(135deg, rgba(0, 102, 204, 0.08), rgba(255, 107, 53, 0.05));
+            padding: 8rem 5%;
+            border-radius: 30px;
+            margin-bottom: 10rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 4rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .feature-item {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            flex-shrink: 0;
+        }
+
+        .feature-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--accent-orange);
+        }
+
+        .feature-content p {
+            color: var(--concrete-light);
+            line-height: 1.8;
+        }
+
+        /* Process Section */
+        .process-section {
+            margin-bottom: 10rem;
+        }
+
+        .process-timeline {
+            position: relative;
+            max-width: 1000px;
+            margin: 4rem auto 0;
+        }
+
+        .process-timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--accent-blue), var(--accent-orange));
+            transform: translateX(-50%);
+        }
+
+        .process-step {
+            display: flex;
+            gap: 3rem;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .process-step:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .process-number {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-orange));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            font-weight: 800;
+            flex-shrink: 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .process-content {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2.5rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .process-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--accent-orange);
+        }
+
+        .process-content p {
+            color: var(--concrete-light);
+            line-height: 1.8;
+        }
+
+        /* Quality Section */
+        .quality-section {
+            background: var(--primary-gray);
+            padding: 8rem 5%;
+            border-radius: 30px;
+            margin-bottom: 5rem;
+        }
+
+        .quality-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .quality-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .quality-stat {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .quality-stat .number {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--accent-orange);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .quality-stat .label {
+            font-size: 1rem;
+            color: var(--concrete-medium);
+        }
+
+        /* Footer */
+        footer {
+            background: #0f0f1a;
+            padding: 5rem 5% 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 3rem;
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .footer-logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--white), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .footer-description {
+            color: var(--concrete-medium);
+            line-height: 1.8;
+        }
+
+        .footer-section h4 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: var(--concrete-medium);
+            text-decoration: none;
+            transition: var(--transition-smooth);
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-blue);
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            color: var(--concrete-medium);
+            font-size: 0.9rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 1024px) {
+            .intro-section {
+                grid-template-columns: 1fr;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .process-timeline::before {
+                left: 60px;
+            }
+
+            .process-step,
+            .process-step:nth-child(even) {
+                flex-direction: row;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .quality-stats {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <a href="halla_encom.html" class="logo">HALLA ENCOM</a>
+        <ul class="nav-links">
+            <li><a href="about.html">회사소개</a></li>
+            <li><a href="business-remicon.html" class="active">사업부문</a></li>
+            <li><a href="network-remicon.html">네트워크</a></li>
+            <li><a href="contact.html">문의하기</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="business-hero">
+        <div class="business-hero-content">
+            <div class="business-label">READY-MIX CONCRETE</div>
+            <h1 class="business-title">레미콘</h1>
+            <p class="business-subtitle">
+                최첨단 생산시설과 엄격한 품질관리로 최상의 레미콘을 공급합니다.
+                대한민국 주요 건설 프로젝트의 든든한 파트너입니다.
+            </p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Intro Section -->
+        <section class="intro-section">
+            <div class="intro-text">
+                <h2>건설의 기초를<br>완성하는 기술력</h2>
+                <p>
+                    한라엔컴의 레미콘은 국내 최고 수준의 생산시설에서 엄격한 품질관리를 거쳐 
+                    생산됩니다. KS 인증을 획득한 고품질 제품으로 초고층 빌딩부터 
+                    대형 인프라 프로젝트까지 다양한 현장에서 신뢰받고 있습니다.
+                </p>
+                <p>
+                    전국 15개 이상의 생산 거점을 통해 신속한 공급이 가능하며, 
+                    계절과 기후를 고려한 최적의 배합 설계로 어떤 조건에서도 
+                    일정한 품질을 보장합니다.
+                </p>
+                <p>
+                    자체 연구소의 지속적인 기술 개발로 친환경 콘크리트, 
+                    고강도 콘크리트 등 특수 목적 제품도 공급하고 있습니다.
+                </p>
+            </div>
+            <div class="intro-image"></div>
+        </section>
+
+        <!-- Products Section -->
+        <section class="products-section">
+            <div class="section-header">
+                <h2 class="section-title">제품 라인업</h2>
+                <p class="section-description">
+                    다양한 용도와 강도의 레미콘 제품을 공급합니다.
+                </p>
+            </div>
+            <div class="products-grid">
+                <div class="product-card">
+                    <span class="product-icon">🏢</span>
+                    <h3>일반 레미콘</h3>
+                    <span class="grade">18MPa ~ 27MPa</span>
+                    <p>
+                        일반 건축물과 토목 구조물에 사용되는 표준 강도의 레미콘입니다.
+                        안정적인 품질과 경제성을 갖춘 제품입니다.
+                    </p>
+                    <ul>
+                        <li>일반 주거용 건물</li>
+                        <li>소규모 상업시설</li>
+                        <li>기초 및 바닥 공사</li>
+                    </ul>
+                </div>
+
+                <div class="product-card">
+                    <span class="product-icon">🏗️</span>
+                    <h3>고강도 레미콘</h3>
+                    <span class="grade">30MPa ~ 50MPa</span>
+                    <p>
+                        대형 건축물과 중요 구조물에 사용되는 고강도 레미콘입니다.
+                        뛰어난 내구성과 구조적 안정성을 제공합니다.
+                    </p>
+                    <ul>
+                        <li>초고층 빌딩</li>
+                        <li>대형 상업시설</li>
+                        <li>교량 및 터널</li>
+                    </ul>
+                </div>
+
+                <div class="product-card">
+                    <span class="product-icon">⚡</span>
+                    <h3>특수 레미콘</h3>
+                    <span class="grade">50MPa 이상</span>
+                    <p>
+                        특수 목적과 극한 조건에 사용되는 초고강도 및 특수 기능성 
+                        레미콘입니다. 맞춤형 배합 설계가 가능합니다.
+                    </p>
+                    <ul>
+                        <li>초고층 건축물 코어</li>
+                        <li>원자력 발전소</li>
+                        <li>해양 구조물</li>
+                    </ul>
+                </div>
+
+                <div class="product-card">
+                    <span class="product-icon">🌿</span>
+                    <h3>친환경 레미콘</h3>
+                    <span class="grade">ECO FRIENDLY</span>
+                    <p>
+                        순환골재 및 산업부산물을 활용한 친환경 레미콘입니다.
+                        탄소 배출을 줄이고 지속 가능성을 높입니다.
+                    </p>
+                    <ul>
+                        <li>녹색건축 인증 건물</li>
+                        <li>공공 인프라</li>
+                        <li>환경친화형 프로젝트</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features-section">
+            <div class="section-header">
+                <h2 class="section-title">경쟁력</h2>
+                <p class="section-description">
+                    한라엔컴 레미콘만의 차별화된 강점입니다.
+                </p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">🔬</div>
+                    <div class="feature-content">
+                        <h3>최첨단 품질관리</h3>
+                        <p>
+                            자동화된 배치 플랜트와 실시간 품질 모니터링 시스템으로 
+                            모든 배치의 품질을 철저히 관리합니다. ISO 9001 인증 기반의 
+                            체계적인 품질관리 시스템을 운영합니다.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-icon">🚛</div>
+                    <div class="feature-content">
+                        <h3>신속한 배송</h3>
+                        <p>
+                            전국 네트워크와 자체 차량을 통해 주문 후 최단 시간 내 배송합니다.
+                            GPS 추적 시스템으로 실시간 배송 현황을 확인할 수 있으며,
+                            긴급 상황에도 유연하게 대응합니다.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-icon">🎯</div>
+                    <div class="feature-content">
+                        <h3>맞춤형 배합 설계</h3>
+                        <p>
+                            현장의 특수한 요구사항에 맞춰 최적의 배합을 설계합니다.
+                            기후, 시공 조건, 구조물 특성 등을 종합적으로 고려하여
+                            최상의 성능을 발휘하는 레미콘을 제공합니다.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-icon">💼</div>
+                    <div class="feature-content">
+                        <h3>기술 지원</h3>
+                        <p>
+                            전문 엔지니어가 시공 계획부터 완공까지 전 과정을 지원합니다.
+                            배합 선정, 타설 계획, 양생 방법 등에 대한 기술 자문을 
+                            제공하여 프로젝트의 성공을 돕습니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Process Section -->
+        <section class="process-section">
+            <div class="section-header">
+                <h2 class="section-title">생산 프로세스</h2>
+                <p class="section-description">
+                    엄격한 품질관리를 거친 레미콘 생산 과정입니다.
+                </p>
+            </div>
+            <div class="process-timeline">
+                <div class="process-step">
+                    <div class="process-number">01</div>
+                    <div class="process-content">
+                        <h3>원재료 검수</h3>
+                        <p>
+                            시멘트, 골재, 혼화재료 등 모든 원재료에 대해 입고 시 
+                            품질 검사를 실시합니다. KS 규격에 적합한 재료만을 사용합니다.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="process-step">
+                    <div class="process-number">02</div>
+                    <div class="process-content">
+                        <h3>배합 설계</h3>
+                        <p>
+                            구조물의 용도, 환경 조건, 강도 요구사항 등을 고려하여 
+                            최적의 배합비를 설계합니다. 시험 배치를 통해 배합을 검증합니다.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="process-step">
+                    <div class="process-number">03</div>
+                    <div class="process-content">
+                        <h3>자동 배칭</h3>
+                        <p>
+                            전산화된 배칭 플랜트에서 정확한 계량으로 재료를 투입합니다.
+                            실시간 모니터링으로 배합 오차를 최소화합니다.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="process-step">
+                    <div class="process-number">04</div>
+                    <div class="process-content">
+                        <h3>품질 검사</h3>
+                        <p>
+                            슬럼프, 공기량, 압축강도 등 주요 품질 항목을 검사합니다.
+                            모든 배치는 시험 성적서와 함께 출하됩니다.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="process-step">
+                    <div class="process-number">05</div>
+                    <div class="process-content">
+                        <h3>운송 및 타설</h3>
+                        <p>
+                            믹서 트럭으로 현장까지 신속하게 운송합니다.
+                            타설 현장에서도 품질 유지를 위한 기술 지원을 제공합니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quality Section -->
+        <section class="quality-section">
+            <div class="quality-content">
+                <div class="section-header">
+                    <h2 class="section-title">품질 성과</h2>
+                    <p class="section-description">
+                        숫자로 증명하는 한라엔컴 레미콘의 우수성
+                    </p>
+                </div>
+                <div class="quality-stats">
+                    <div class="quality-stat">
+                        <span class="number">99.9%</span>
+                        <span class="label">품질 합격률</span>
+                    </div>
+                    <div class="quality-stat">
+                        <span class="number">1,000+</span>
+                        <span class="label">월평균 공급량 (㎥)</span>
+                    </div>
+                    <div class="quality-stat">
+                        <span class="number">30분</span>
+                        <span class="label">평균 배송 시간</span>
+                    </div>
+                    <div class="quality-stat">
+                        <span class="number">24/7</span>
+                        <span class="label">기술 지원</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="footer-logo">HALLA ENCOM</div>
+                <p class="footer-description">
+                    한라엔컴은 최고 품질의 레미콘으로 대한민국 건설산업을 지원합니다.
+                </p>
+            </div>
+            <div class="footer-section">
+                <h4>회사정보</h4>
+                <ul class="footer-links">
+                    <li><a href="about.html">회사소개</a></li>
+                    <li><a href="ceo-message.html">CEO 인사말</a></li>
+                    <li><a href="history.html">연혁</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>사업분야</h4>
+                <ul class="footer-links">
+                    <li><a href="business-remicon.html">레미콘</a></li>
+                    <li><a href="business-aggregate.html">골재·조경석</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>고객지원</h4>
+                <ul class="footer-links">
+                    <li><a href="contact.html">문의하기</a></li>
+                    <li><a href="network-remicon.html">네트워크</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Halla Encom Co., Ltd. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.product-card, .feature-item, .process-step, .quality-stat').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

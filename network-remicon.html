@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>전국 네트워크 - 한라엔컴</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Playfair+Display:wght@400;700;900&family=Montserrat:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-dark: #1a1a2e;
+            --primary-gray: #2d3142;
+            --accent-blue: #0066cc;
+            --accent-cyan: #00d4ff;
+            --concrete-light: #e8e8e8;
+            --concrete-medium: #a8a8a8;
+            --white: #ffffff;
+            --transition-smooth: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', -apple-system, sans-serif;
+            background: var(--primary-dark);
+            color: var(--white);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, var(--white), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            position: relative;
+            transition: var(--transition-smooth);
+            letter-spacing: 0.05em;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-blue);
+            transition: var(--transition-smooth);
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .page-hero {
+            padding: 12rem 5% 8rem;
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary-gray));
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(0, 212, 255, 0.1), transparent 50%),
+                radial-gradient(circle at 80% 30%, rgba(0, 102, 204, 0.15), transparent 50%);
+        }
+
+        .page-hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .page-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 6vw, 5rem);
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+        }
+
+        .page-subtitle {
+            font-size: 1.3rem;
+            color: var(--concrete-light);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        /* Main Content */
+        .main-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 6rem 5%;
+        }
+
+        /* Stats Section */
+        .network-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 3rem;
+            margin-bottom: 10rem;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(0, 102, 204, 0.05));
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            transition: var(--transition-smooth);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0, 212, 255, 0.3);
+        }
+
+        .stat-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .stat-number {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--accent-cyan);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: var(--concrete-light);
+        }
+
+        /* Region Section */
+        .region-section {
+            margin-bottom: 10rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-description {
+            font-size: 1.1rem;
+            color: var(--concrete-medium);
+        }
+
+        .region-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 4rem;
+            flex-wrap: wrap;
+        }
+
+        .region-tab {
+            padding: 1rem 2.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            color: var(--white);
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+
+        .region-tab:hover,
+        .region-tab.active {
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan));
+            border-color: var(--accent-cyan);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+        }
+
+        .locations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 3rem;
+        }
+
+        .location-card {
+            background: linear-gradient(135deg, rgba(0, 102, 204, 0.05), rgba(45, 49, 66, 0.5));
+            padding: 3rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .location-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.1), transparent);
+            opacity: 0;
+            transition: var(--transition-smooth);
+        }
+
+        .location-card:hover::before {
+            opacity: 1;
+            animation: rotate 10s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .location-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-cyan);
+            box-shadow: 0 30px 60px rgba(0, 212, 255, 0.3);
+        }
+
+        .location-header {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .location-icon {
+            font-size: 3rem;
+        }
+
+        .location-header h3 {
+            font-size: 1.8rem;
+            color: var(--accent-cyan);
+        }
+
+        .location-info {
+            position: relative;
+            z-index: 1;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 10px;
+        }
+
+        .info-icon {
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .info-content {
+            flex: 1;
+        }
+
+        .info-label {
+            font-size: 0.9rem;
+            color: var(--concrete-medium);
+            margin-bottom: 0.3rem;
+        }
+
+        .info-text {
+            color: var(--concrete-light);
+            font-size: 1rem;
+        }
+
+        /* Coverage Section */
+        .coverage-section {
+            background: var(--primary-gray);
+            padding: 8rem 5%;
+            border-radius: 30px;
+            margin-bottom: 10rem;
+        }
+
+        .coverage-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .coverage-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .coverage-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 3rem;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .coverage-icon {
+            font-size: 4rem;
+            margin-bottom: 2rem;
+        }
+
+        .coverage-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--accent-cyan);
+        }
+
+        .coverage-card p {
+            color: var(--concrete-light);
+            line-height: 1.8;
+        }
+
+        /* Footer */
+        footer {
+            background: #0f0f1a;
+            padding: 5rem 5% 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 3rem;
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .footer-logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--white), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .footer-description {
+            color: var(--concrete-medium);
+            line-height: 1.8;
+        }
+
+        .footer-section h4 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: var(--concrete-medium);
+            text-decoration: none;
+            transition: var(--transition-smooth);
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-blue);
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            color: var(--concrete-medium);
+            font-size: 0.9rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 1024px) {
+            .network-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .coverage-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .network-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .locations-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="halla_encom.html" class="logo">HALLA ENCOM</a>
+        <ul class="nav-links">
+            <li><a href="about.html">회사소개</a></li>
+            <li><a href="business-remicon.html">사업부문</a></li>
+            <li><a href="network-remicon.html" class="active">네트워크</a></li>
+            <li><a href="contact.html">문의하기</a></li>
+        </ul>
+    </nav>
+
+    <header class="page-hero">
+        <div class="page-hero-content">
+            <h1 class="page-title">전국 네트워크</h1>
+            <p class="page-subtitle">
+                전국 주요 지역에 구축된 생산 및 물류 거점으로
+                신속하고 안정적인 공급 체계를 제공합니다.
+            </p>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <!-- Network Stats -->
+        <section class="network-stats">
+            <div class="stat-card">
+                <div class="stat-icon">📍</div>
+                <span class="stat-number">15+</span>
+                <span class="stat-label">생산 거점</span>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">🚛</div>
+                <span class="stat-number">200+</span>
+                <span class="stat-label">보유 차량</span>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">⏱️</div>
+                <span class="stat-number">30분</span>
+                <span class="stat-label">평균 배송 시간</span>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">🏆</div>
+                <span class="stat-number">99%</span>
+                <span class="stat-label">정시 공급률</span>
+            </div>
+        </section>
+
+        <!-- Regions -->
+        <section class="region-section">
+            <div class="section-header">
+                <h2 class="section-title">지역별 생산 거점</h2>
+                <p class="section-description">
+                    전국 주요 지역의 생산 거점을 확인하세요.
+                </p>
+            </div>
+
+            <div class="region-tabs">
+                <button class="region-tab active">수도권</button>
+                <button class="region-tab">충청권</button>
+                <button class="region-tab">호남권</button>
+                <button class="region-tab">영남권</button>
+            </div>
+
+            <div class="locations-grid">
+                <div class="location-card">
+                    <div class="location-header">
+                        <div class="location-icon">🏭</div>
+                        <h3>서울 공장</h3>
+                    </div>
+                    <div class="location-info">
+                        <div class="info-item">
+                            <div class="info-icon">📍</div>
+                            <div class="info-content">
+                                <div class="info-label">주소</div>
+                                <div class="info-text">서울시 강서구 공항대로 000</div>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-icon">📞</div>
+                            <div class="info-content">
+                                <div class="info-label">전화</div>
+                                <div class="info-text">02-0000-0000</div>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-icon">🏗️</div>
+                            <div class="info-content">
+                                <div class="info-label">주요 제품</div>
+                                <div class="info-text">레미콘 전 제품</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="location-card">
+                    <div class="location-header">
+                        <div class="location-icon">🏭</div>
+                        <h3>경기 북부 공장</h3>
+                    </div>
+                    <div class="location-info">
+                        <div class="info-item">
+                            <div class="info-icon">📍</div>
+                            <div class="info-content">
+                                <div class="info-label">주소</div>
+                                <div class="info-text">경기도 의정부시 산업로 000</div>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-icon">📞</div>
+                            <div class="info-content">
+                                <div class="info-label">전화</div>
+                                <div class="info-text">031-0000-0000</div>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-icon">🏗️</div>
+                            <div class="info-content">
+                                <div class="info-label">주요 제품</div>
+                                <div class="info-text">레미콘, 골재</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="location-card">
+                    <div class="location-header">
+                        <div class="location-icon">🏭</div>
+                        <h3>인천 공장</h3>
+                    </div>
+                    <div class="location-info">
+                        <div class="info-item">
+                            <div class="info-icon">📍</div>
+                            <div class="info-content">
+                                <div class="info-label">주소</div>
+                                <div class="info-text">인천시 남동구 공단로 000</div>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-icon">📞</div>
+                            <div class="info-content">
+                                <div class="info-label">전화</div>
+                                <div class="info-text">032-0000-0000</div>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-icon">🏗️</div>
+                            <div class="info-content">
+                                <div class="info-label">주요 제품</div>
+                                <div class="info-text">레미콘, 특수 콘크리트</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="location-card">
+                    <div class="location-header">
+                        <div class="location-icon">⛰️</div>
+                        <h3>경기 골재장</h3>
+                    </div>
+                    <div class="location-info">
+                        <div class="info-item">
+                            <div class="info-icon">📍</div>
+                            <div class="info-content">
+                                <div class="info-label">주소</div>
+                                <div class="info-text">경기도 가평군 산업로 000</div>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-icon">📞</div>
+                            <div class="info-content">
+                                <div class="info-label">전화</div>
+                                <div class="info-text">031-0000-0000</div>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-icon">🪨</div>
+                            <div class="info-content">
+                                <div class="info-label">주요 제품</div>
+                                <div class="info-text">골재, 조경석</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Coverage -->
+        <section class="coverage-section">
+            <div class="coverage-content">
+                <div class="section-header">
+                    <h2 class="section-title">공급 서비스</h2>
+                    <p class="section-description">
+                        한라엔컴의 차별화된 공급 서비스를 경험하세요.
+                    </p>
+                </div>
+                <div class="coverage-grid">
+                    <div class="coverage-card">
+                        <div class="coverage-icon">🚚</div>
+                        <h3>신속 배송</h3>
+                        <p>
+                            GPS 추적 시스템과 최적 경로 설정으로
+                            주문 후 최단 시간 내 현장까지 배송합니다.
+                            긴급 주문도 유연하게 대응 가능합니다.
+                        </p>
+                    </div>
+                    <div class="coverage-card">
+                        <div class="coverage-icon">📱</div>
+                        <h3>실시간 관리</h3>
+                        <p>
+                            주문부터 배송까지 전 과정을 실시간으로
+                            확인할 수 있는 시스템을 운영합니다.
+                            투명한 공급 프로세스를 제공합니다.
+                        </p>
+                    </div>
+                    <div class="coverage-card">
+                        <div class="coverage-icon">💼</div>
+                        <h3>기술 지원</h3>
+                        <p>
+                            전문 엔지니어의 현장 기술 지원으로
+                            최적의 시공 환경을 조성합니다.
+                            시공 전 상담부터 완공까지 함께합니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="footer-logo">HALLA ENCOM</div>
+                <p class="footer-description">
+                    전국 네트워크로 언제 어디서나 최고의 품질을 공급합니다.
+                </p>
+            </div>
+            <div class="footer-section">
+                <h4>회사정보</h4>
+                <ul class="footer-links">
+                    <li><a href="about.html">회사소개</a></li>
+                    <li><a href="ceo-message.html">CEO 인사말</a></li>
+                    <li><a href="history.html">연혁</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>사업분야</h4>
+                <ul class="footer-links">
+                    <li><a href="business-remicon.html">레미콘</a></li>
+                    <li><a href="business-aggregate.html">골재·조경석</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>고객지원</h4>
+                <ul class="footer-links">
+                    <li><a href="contact.html">문의하기</a></li>
+                    <li><a href="network-remicon.html">네트워크</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Halla Encom Co., Ltd. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.stat-card, .location-card, .coverage-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
+            observer.observe(el);
+        });
+
+        // Region tabs functionality
+        const tabs = document.querySelectorAll('.region-tab');
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

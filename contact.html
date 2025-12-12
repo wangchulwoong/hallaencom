@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>문의하기 - 한라엔컴</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Playfair+Display:wght@400;700;900&family=Montserrat:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-dark: #1a1a2e;
+            --primary-gray: #2d3142;
+            --accent-blue: #0066cc;
+            --accent-purple: #6366f1;
+            --concrete-light: #e8e8e8;
+            --concrete-medium: #a8a8a8;
+            --white: #ffffff;
+            --transition-smooth: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', -apple-system, sans-serif;
+            background: var(--primary-dark);
+            color: var(--white);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, var(--white), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            position: relative;
+            transition: var(--transition-smooth);
+            letter-spacing: 0.05em;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-blue);
+            transition: var(--transition-smooth);
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .page-hero {
+            padding: 12rem 5% 8rem;
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary-gray));
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 30% 50%, rgba(99, 102, 241, 0.15), transparent 50%),
+                radial-gradient(circle at 70% 30%, rgba(0, 102, 204, 0.1), transparent 50%);
+        }
+
+        .page-hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .page-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 6vw, 5rem);
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+        }
+
+        .page-subtitle {
+            font-size: 1.3rem;
+            color: var(--concrete-light);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        /* Main Content */
+        .main-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 6rem 5%;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 6rem;
+            margin-bottom: 10rem;
+        }
+
+        /* Contact Info */
+        .contact-info {
+            position: sticky;
+            top: 120px;
+            height: fit-content;
+        }
+
+        .info-card {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(0, 102, 204, 0.05));
+            padding: 3rem;
+            border-radius: 20px;
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            margin-bottom: 2rem;
+        }
+
+        .info-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            color: var(--accent-purple);
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 15px;
+            transition: var(--transition-smooth);
+        }
+
+        .info-item:hover {
+            background: rgba(255, 255, 255, 0.06);
+            transform: translateX(10px);
+        }
+
+        .info-icon {
+            font-size: 2rem;
+            flex-shrink: 0;
+        }
+
+        .info-content h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--white);
+        }
+
+        .info-content p {
+            color: var(--concrete-light);
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .business-hours {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-top: 2rem;
+        }
+
+        .business-hours h4 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: var(--accent-purple);
+        }
+
+        .business-hours p {
+            color: var(--concrete-light);
+            line-height: 2;
+        }
+
+        /* Contact Form */
+        .contact-form-section {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 4rem;
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .form-header {
+            margin-bottom: 3rem;
+        }
+
+        .form-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .form-header p {
+            color: var(--concrete-medium);
+            font-size: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            color: var(--concrete-light);
+        }
+
+        .required {
+            color: var(--accent-purple);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 1.2rem 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            color: var(--white);
+            font-size: 1rem;
+            font-family: 'Noto Sans KR', sans-serif;
+            transition: var(--transition-smooth);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent-purple);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+        }
+
+        .form-group textarea {
+            min-height: 200px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            color: var(--white);
+            font-size: 1.1rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            letter-spacing: 0.05em;
+            margin-top: 1rem;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.4);
+        }
+
+        .form-note {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 12px;
+            border-left: 4px solid var(--accent-purple);
+        }
+
+        .form-note p {
+            color: var(--concrete-light);
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+
+        /* Quick Links */
+        .quick-links-section {
+            margin-bottom: 10rem;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .quick-links-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+        }
+
+        .quick-link-card {
+            background: linear-gradient(135deg, rgba(0, 102, 204, 0.05), rgba(45, 49, 66, 0.5));
+            padding: 3rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            transition: var(--transition-smooth);
+            text-decoration: none;
+            color: var(--white);
+            display: block;
+        }
+
+        .quick-link-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-purple);
+            box-shadow: 0 30px 60px rgba(99, 102, 241, 0.3);
+        }
+
+        .quick-link-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .quick-link-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .quick-link-card p {
+            color: var(--concrete-medium);
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        footer {
+            background: #0f0f1a;
+            padding: 5rem 5% 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 3rem;
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .footer-logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--white), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .footer-description {
+            color: var(--concrete-medium);
+            line-height: 1.8;
+        }
+
+        .footer-section h4 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: var(--concrete-medium);
+            text-decoration: none;
+            transition: var(--transition-smooth);
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-blue);
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            color: var(--concrete-medium);
+            font-size: 0.9rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 1024px) {
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 4rem;
+            }
+
+            .contact-info {
+                position: static;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .quick-links-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .contact-form-section {
+                padding: 2rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="halla_encom.html" class="logo">HALLA ENCOM</a>
+        <ul class="nav-links">
+            <li><a href="about.html">회사소개</a></li>
+            <li><a href="business-remicon.html">사업부문</a></li>
+            <li><a href="network-remicon.html">네트워크</a></li>
+            <li><a href="contact.html" class="active">문의하기</a></li>
+        </ul>
+    </nav>
+
+    <header class="page-hero">
+        <div class="page-hero-content">
+            <h1 class="page-title">문의하기</h1>
+            <p class="page-subtitle">
+                궁금하신 사항이 있으신가요?
+                한라엔컴이 언제나 열려있습니다.
+            </p>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="contact-container">
+            <!-- Contact Info -->
+            <div class="contact-info">
+                <div class="info-card">
+                    <h3>연락처 정보</h3>
+                    
+                    <div class="info-item">
+                        <div class="info-icon">📞</div>
+                        <div class="info-content">
+                            <h4>대표 전화</h4>
+                            <p>02-0000-0000</p>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-icon">📠</div>
+                        <div class="info-content">
+                            <h4>팩스</h4>
+                            <p>02-0000-0001</p>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-icon">✉️</div>
+                        <div class="info-content">
+                            <h4>이메일</h4>
+                            <p>info@hallaencom.com</p>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-icon">📍</div>
+                        <div class="info-content">
+                            <h4>본사 주소</h4>
+                            <p>서울시 강남구 테헤란로 000<br>한라빌딩 10층</p>
+                        </div>
+                    </div>
+
+                    <div class="business-hours">
+                        <h4>업무 시간</h4>
+                        <p>
+                            평일: 09:00 - 18:00<br>
+                            토요일: 09:00 - 13:00<br>
+                            일요일 및 공휴일: 휴무
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="contact-form-section">
+                <div class="form-header">
+                    <h2>온라인 문의</h2>
+                    <p>아래 양식을 작성해주시면 빠른 시일 내에 답변드리겠습니다.</p>
+                </div>
+
+                <form id="contactForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>이름 <span class="required">*</span></label>
+                            <input type="text" required placeholder="홍길동">
+                        </div>
+                        <div class="form-group">
+                            <label>회사명</label>
+                            <input type="text" placeholder="(주)회사명">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>이메일 <span class="required">*</span></label>
+                            <input type="email" required placeholder="email@example.com">
+                        </div>
+                        <div class="form-group">
+                            <label>연락처 <span class="required">*</span></label>
+                            <input type="tel" required placeholder="010-0000-0000">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>문의 유형 <span class="required">*</span></label>
+                        <select required>
+                            <option value="">선택해주세요</option>
+                            <option value="remicon">레미콘 문의</option>
+                            <option value="aggregate">골재·조경석 문의</option>
+                            <option value="quote">견적 요청</option>
+                            <option value="partnership">협력 제안</option>
+                            <option value="other">기타 문의</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>제목 <span class="required">*</span></label>
+                        <input type="text" required placeholder="문의 제목을 입력해주세요">
+                    </div>
+
+                    <div class="form-group">
+                        <label>문의 내용 <span class="required">*</span></label>
+                        <textarea required placeholder="문의하실 내용을 자세히 작성해주세요"></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn">문의하기</button>
+
+                    <div class="form-note">
+                        <p>
+                            <strong>개인정보 수집 및 이용 안내</strong><br>
+                            입력하신 정보는 문의 처리 및 답변을 위해서만 사용되며,
+                            관련 법령에 따라 안전하게 관리됩니다.
+                            문의 처리 완료 후 즉시 파기됩니다.
+                        </p>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Quick Links -->
+        <section class="quick-links-section">
+            <h2 class="section-title">빠른 링크</h2>
+            <div class="quick-links-grid">
+                <a href="business-remicon.html" class="quick-link-card">
+                    <div class="quick-link-icon">🏗️</div>
+                    <h3>레미콘 사업</h3>
+                    <p>레미콘 제품 정보 및<br>상세 내용 확인</p>
+                </a>
+                <a href="business-aggregate.html" class="quick-link-card">
+                    <div class="quick-link-icon">⛰️</div>
+                    <h3>골재·조경석</h3>
+                    <p>골재 및 조경석<br>제품 라인업 확인</p>
+                </a>
+                <a href="network-remicon.html" class="quick-link-card">
+                    <div class="quick-link-icon">📍</div>
+                    <h3>네트워크</h3>
+                    <p>전국 생산 거점 및<br>연락처 확인</p>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="footer-logo">HALLA ENCOM</div>
+                <p class="footer-description">
+                    궁금한 사항이 있으시면 언제든지 문의해주세요.
+                </p>
+            </div>
+            <div class="footer-section">
+                <h4>회사정보</h4>
+                <ul class="footer-links">
+                    <li><a href="about.html">회사소개</a></li>
+                    <li><a href="ceo-message.html">CEO 인사말</a></li>
+                    <li><a href="history.html">연혁</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>사업분야</h4>
+                <ul class="footer-links">
+                    <li><a href="business-remicon.html">레미콘</a></li>
+                    <li><a href="business-aggregate.html">골재·조경석</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>고객지원</h4>
+                <ul class="footer-links">
+                    <li><a href="contact.html">문의하기</a></li>
+                    <li><a href="network-remicon.html">네트워크</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Halla Encom Co., Ltd. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Form submission handler
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('문의가 접수되었습니다. 빠른 시일 내에 답변드리겠습니다.');
+            this.reset();
+        });
+
+        // Animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.info-card, .contact-form-section, .quick-link-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
