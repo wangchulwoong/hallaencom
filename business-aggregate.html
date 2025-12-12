@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>골재·조경석 사업 - 한라엔컴</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Playfair+Display:wght@400;700;900&family=Montserrat:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-dark: #1a1a2e;
+            --primary-gray: #2d3142;
+            --accent-green: #2d5016;
+            --accent-brown: #8b7355;
+            --accent-beige: #d4c4a8;
+            --concrete-light: #e8e8e8;
+            --concrete-medium: #a8a8a8;
+            --white: #ffffff;
+            --transition-smooth: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', -apple-system, sans-serif;
+            background: var(--primary-dark);
+            color: var(--white);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, var(--white), #0066cc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            position: relative;
+            transition: var(--transition-smooth);
+            letter-spacing: 0.05em;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #0066cc;
+            transition: var(--transition-smooth);
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .business-hero {
+            position: relative;
+            height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #1a1a2e, #2d3142);
+            overflow: hidden;
+            margin-top: 80px;
+        }
+
+        .business-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                url('data:image/svg+xml,%3Csvg width="100" height="100" xmlns="http://www.w3.org/2000/svg"%3E%3Cpattern id="stones" x="0" y="0" width="30" height="30" patternUnits="userSpaceOnUse"%3E%3Cpolygon points="5,8 12,5 18,8 15,15 8,15" fill="%23555" opacity="0.3"/%3E%3Cpolygon points="20,20 25,18 28,23 24,27 19,25" fill="%23666" opacity="0.3"/%3E%3C/pattern%3E%3Crect width="100" height="100" fill="url(%23stones)"/%3E%3C/svg%3E'),
+                linear-gradient(135deg, rgba(45, 80, 22, 0.3), rgba(139, 115, 85, 0.2));
+            opacity: 0.4;
+        }
+
+        .business-hero-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            max-width: 1200px;
+            padding: 0 2rem;
+        }
+
+        .business-label {
+            font-size: 0.9rem;
+            letter-spacing: 0.3em;
+            color: var(--accent-beige);
+            margin-bottom: 2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .business-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3.5rem, 7vw, 6rem);
+            font-weight: 900;
+            margin-bottom: 2rem;
+            line-height: 1.1;
+        }
+
+        .business-subtitle {
+            font-size: 1.4rem;
+            color: var(--concrete-light);
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        .main-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 8rem 5%;
+        }
+
+        /* Intro Section */
+        .intro-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            margin-bottom: 10rem;
+            align-items: center;
+        }
+
+        .intro-text h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            line-height: 1.3;
+        }
+
+        .intro-text p {
+            font-size: 1.1rem;
+            line-height: 2;
+            color: var(--concrete-light);
+            margin-bottom: 1.5rem;
+        }
+
+        .intro-visual {
+            position: relative;
+            height: 500px;
+            border-radius: 20px;
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(45, 80, 22, 0.3), rgba(139, 115, 85, 0.3));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .intro-visual::before {
+            content: '⛰️';
+            font-size: 15rem;
+            opacity: 0.2;
+        }
+
+        /* Products Section */
+        .products-section {
+            margin-bottom: 10rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-description {
+            font-size: 1.1rem;
+            color: var(--concrete-medium);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .products-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .tab-button {
+            padding: 1rem 3rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            color: var(--white);
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+
+        .tab-button:hover,
+        .tab-button.active {
+            background: linear-gradient(135deg, var(--accent-green), var(--accent-brown));
+            border-color: var(--accent-beige);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 3rem;
+        }
+
+        .product-card {
+            background: linear-gradient(135deg, rgba(45, 80, 22, 0.1), rgba(45, 49, 66, 0.5));
+            border-radius: 20px;
+            padding: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(139, 115, 85, 0.1), transparent);
+            opacity: 0;
+            transition: var(--transition-smooth);
+        }
+
+        .product-card:hover::before {
+            opacity: 1;
+            animation: rotate 15s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-beige);
+            box-shadow: 0 30px 60px rgba(139, 115, 85, 0.3);
+        }
+
+        .product-icon {
+            font-size: 4rem;
+            margin-bottom: 2rem;
+            display: block;
+        }
+
+        .product-card h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .product-card .spec {
+            color: var(--accent-beige);
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .product-card p {
+            color: var(--concrete-medium);
+            line-height: 1.8;
+            position: relative;
+            z-index: 1;
+            margin-bottom: 1.5rem;
+        }
+
+        .product-card ul {
+            list-style: none;
+            position: relative;
+            z-index: 1;
+        }
+
+        .product-card li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: var(--concrete-light);
+        }
+
+        .product-card li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--accent-beige);
+        }
+
+        /* Applications Section */
+        .applications-section {
+            background: linear-gradient(135deg, rgba(45, 80, 22, 0.1), rgba(139, 115, 85, 0.05));
+            padding: 8rem 5%;
+            border-radius: 30px;
+            margin-bottom: 10rem;
+        }
+
+        .applications-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            max-width: 1400px;
+            margin: 4rem auto 0;
+        }
+
+        .application-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 3rem;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: var(--transition-smooth);
+        }
+
+        .application-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--accent-beige);
+            transform: translateY(-10px);
+        }
+
+        .application-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .application-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--accent-beige);
+        }
+
+        .application-card p {
+            color: var(--concrete-light);
+            line-height: 1.8;
+        }
+
+        /* Quality Section */
+        .quality-section {
+            margin-bottom: 10rem;
+        }
+
+        .quality-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 4rem;
+        }
+
+        .quality-item {
+            display: flex;
+            gap: 2rem;
+            padding: 3rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .quality-icon {
+            font-size: 4rem;
+            flex-shrink: 0;
+        }
+
+        .quality-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--accent-beige);
+        }
+
+        .quality-content p {
+            color: var(--concrete-light);
+            line-height: 1.8;
+        }
+
+        /* Gallery Section */
+        .gallery-section {
+            background: var(--primary-gray);
+            padding: 8rem 5%;
+            border-radius: 30px;
+            margin-bottom: 5rem;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 4rem auto 0;
+        }
+
+        .gallery-item {
+            aspect-ratio: 1;
+            border-radius: 15px;
+            background: linear-gradient(135deg, rgba(45, 80, 22, 0.2), rgba(139, 115, 85, 0.2));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            transition: var(--transition-smooth);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: #0f0f1a;
+            padding: 5rem 5% 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 3rem;
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .footer-logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--white), #0066cc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .footer-description {
+            color: var(--concrete-medium);
+            line-height: 1.8;
+        }
+
+        .footer-section h4 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: var(--concrete-medium);
+            text-decoration: none;
+            transition: var(--transition-smooth);
+        }
+
+        .footer-links a:hover {
+            color: #0066cc;
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            color: var(--concrete-medium);
+            font-size: 0.9rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 1024px) {
+            .intro-section {
+                grid-template-columns: 1fr;
+            }
+
+            .applications-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .quality-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .products-tabs {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="halla_encom.html" class="logo">HALLA ENCOM</a>
+        <ul class="nav-links">
+            <li><a href="about.html">회사소개</a></li>
+            <li><a href="business-remicon.html" class="active">사업부문</a></li>
+            <li><a href="network-remicon.html">네트워크</a></li>
+            <li><a href="contact.html">문의하기</a></li>
+        </ul>
+    </nav>
+
+    <section class="business-hero">
+        <div class="business-hero-content">
+            <div class="business-label">AGGREGATE & LANDSCAPING STONE</div>
+            <h1 class="business-title">골재 · 조경석</h1>
+            <p class="business-subtitle">
+                자연의 아름다움을 담은 고품질 골재와 조경석으로
+                건축과 조경의 완성도를 높입니다.
+            </p>
+        </div>
+    </section>
+
+    <main class="main-content">
+        <section class="intro-section">
+            <div class="intro-text">
+                <h2>자연에서 얻은<br>최상의 품질</h2>
+                <p>
+                    한라엔컴의 골재는 엄선된 원석을 최신 설비로 가공하여 생산됩니다.
+                    건축용 골재부터 토목공사, 조경 프로젝트까지 다양한 용도로 
+                    활용 가능한 제품을 공급합니다.
+                </p>
+                <p>
+                    KS 규격에 적합한 품질관리를 통해 일정한 입도와 강도를 유지하며,
+                    친환경 채취 및 가공 공정으로 환경 보호에도 앞장서고 있습니다.
+                </p>
+                <p>
+                    조경석은 자연 그대로의 아름다움을 간직하면서도 내구성이 뛰어나
+                    공원, 정원, 건물 외관 등 다양한 공간에 자연미를 더합니다.
+                </p>
+            </div>
+            <div class="intro-visual"></div>
+        </section>
+
+        <section class="products-section">
+            <div class="section-header">
+                <h2 class="section-title">제품 라인업</h2>
+                <p class="section-description">
+                    용도별로 최적화된 다양한 골재와 조경석을 공급합니다.
+                </p>
+            </div>
+
+            <div class="products-grid">
+                <div class="product-card">
+                    <span class="product-icon">🏗️</span>
+                    <h3>쇄석</h3>
+                    <span class="spec">5~40mm</span>
+                    <p>
+                        암석을 파쇄하여 만든 골재로 콘크리트의 주재료로 사용됩니다.
+                        높은 강도와 내구성이 특징입니다.
+                    </p>
+                    <ul>
+                        <li>콘크리트 제조</li>
+                        <li>아스팔트 포장</li>
+                        <li>기초 공사</li>
+                    </ul>
+                </div>
+
+                <div class="product-card">
+                    <span class="product-icon">🌊</span>
+                    <h3>모래</h3>
+                    <span class="spec">0.08~5mm</span>
+                    <p>
+                        각종 건설공사에 필수적인 세골재입니다.
+                        입도가 고르고 불순물이 적은 고품질 모래를 공급합니다.
+                    </p>
+                    <ul>
+                        <li>콘크리트 제조</li>
+                        <li>모르타르 제조</li>
+                        <li>성토 및 되메우기</li>
+                    </ul>
+                </div>
+
+                <div class="product-card">
+                    <span class="product-icon">🛣️</span>
+                    <h3>쇄사</h3>
+                    <span class="spec">0.15~5mm</span>
+                    <p>
+                        암석을 파쇄하여 만든 인공 모래입니다.
+                        강도가 높고 입도가 균일하여 고품질 콘크리트 제조에 적합합니다.
+                    </p>
+                    <ul>
+                        <li>고강도 콘크리트</li>
+                        <li>프리캐스트 제품</li>
+                        <li>특수 모르타르</li>
+                    </ul>
+                </div>
+
+                <div class="product-card">
+                    <span class="product-icon">🏔️</span>
+                    <h3>조경석</h3>
+                    <span class="spec">다양한 크기</span>
+                    <p>
+                        자연스러운 형태와 색감의 조경용 석재입니다.
+                        정원, 공원, 건물 외관 등에 자연미를 더합니다.
+                    </p>
+                    <ul>
+                        <li>정원 조경</li>
+                        <li>건축 외장</li>
+                        <li>수경 시설</li>
+                    </ul>
+                </div>
+
+                <div class="product-card">
+                    <span class="product-icon">⚒️</span>
+                    <h3>자갈</h3>
+                    <span class="spec">5~150mm</span>
+                    <p>
+                        다양한 크기의 자갈로 배수 및 장식용으로 활용됩니다.
+                        깨끗하고 단단한 고품질 자갈을 공급합니다.
+                    </p>
+                    <ul>
+                        <li>배수층 조성</li>
+                        <li>정원 장식</li>
+                        <li>보도 포장</li>
+                    </ul>
+                </div>
+
+                <div class="product-card">
+                    <span class="product-icon">🪨</span>
+                    <h3>판석</h3>
+                    <span class="spec">판상 형태</span>
+                    <p>
+                        평평한 판 형태의 석재로 바닥재나 벽면재로 사용됩니다.
+                        자연스러운 질감과 높은 내구성을 자랑합니다.
+                    </p>
+                    <ul>
+                        <li>보도 포장</li>
+                        <li>계단 시공</li>
+                        <li>벽면 장식</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="applications-section">
+            <div class="section-header">
+                <h2 class="section-title">활용 분야</h2>
+                <p class="section-description">
+                    골재와 조경석의 다양한 활용 사례입니다.
+                </p>
+            </div>
+            <div class="applications-grid">
+                <div class="application-card">
+                    <div class="application-icon">🏢</div>
+                    <h3>건축 공사</h3>
+                    <p>
+                        콘크리트 제조, 기초 공사, 뒤채움 등
+                        건축의 기반이 되는 필수 자재로 활용됩니다.
+                    </p>
+                </div>
+                <div class="application-card">
+                    <div class="application-icon">🛤️</div>
+                    <h3>토목 공사</h3>
+                    <p>
+                        도로 포장, 철도 노반, 하천 정비 등
+                        대형 인프라 프로젝트에 필수적입니다.
+                    </p>
+                </div>
+                <div class="application-card">
+                    <div class="application-icon">🌳</div>
+                    <h3>조경 공사</h3>
+                    <p>
+                        공원, 정원, 수경 시설 등에 자연미를 더하며
+                        쾌적한 생활 환경을 조성합니다.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="quality-section">
+            <div class="section-header">
+                <h2 class="section-title">품질 관리</h2>
+                <p class="section-description">
+                    한라엔컴 골재의 우수성을 보장하는 체계적인 품질관리 시스템
+                </p>
+            </div>
+            <div class="quality-grid">
+                <div class="quality-item">
+                    <div class="quality-icon">🔍</div>
+                    <div class="quality-content">
+                        <h3>원석 선별</h3>
+                        <p>
+                            채취 단계부터 엄격한 기준을 적용하여 불순물이 적고
+                            강도가 높은 양질의 원석만을 선별합니다.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="quality-item">
+                    <div class="quality-icon">⚙️</div>
+                    <div class="quality-content">
+                        <h3>최신 설비</h3>
+                        <p>
+                            첨단 파쇄 및 선별 설비로 균일한 입도와 형상을 유지하며,
+                            효율적인 생산 공정을 운영합니다.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="quality-item">
+                    <div class="quality-icon">📊</div>
+                    <div class="quality-content">
+                        <h3>정기 시험</h3>
+                        <p>
+                            입도 분포, 밀도, 흡수율, 마모율 등 KS 규격에 따른
+                            정기적인 품질 시험을 실시합니다.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="quality-item">
+                    <div class="quality-icon">🌿</div>
+                    <div class="quality-content">
+                        <h3>친환경 생산</h3>
+                        <p>
+                            환경 영향을 최소화하는 친환경 채취 및 가공 공정으로
+                            지속 가능한 생산 체계를 구축했습니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="gallery-section">
+            <div class="section-header">
+                <h2 class="section-title">제품 갤러리</h2>
+                <p class="section-description">
+                    다양한 종류의 골재와 조경석을 만나보세요.
+                </p>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item">🪨</div>
+                <div class="gallery-item">⛰️</div>
+                <div class="gallery-item">🏔️</div>
+                <div class="gallery-item">🗿</div>
+                <div class="gallery-item">🌋</div>
+                <div class="gallery-item">💎</div>
+                <div class="gallery-item">🧱</div>
+                <div class="gallery-item">⚒️</div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="footer-logo">HALLA ENCOM</div>
+                <p class="footer-description">
+                    자연의 아름다움을 담은 골재와 조경석으로 공간의 가치를 높입니다.
+                </p>
+            </div>
+            <div class="footer-section">
+                <h4>회사정보</h4>
+                <ul class="footer-links">
+                    <li><a href="about.html">회사소개</a></li>
+                    <li><a href="ceo-message.html">CEO 인사말</a></li>
+                    <li><a href="history.html">연혁</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>사업분야</h4>
+                <ul class="footer-links">
+                    <li><a href="business-remicon.html">레미콘</a></li>
+                    <li><a href="business-aggregate.html">골재·조경석</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>고객지원</h4>
+                <ul class="footer-links">
+                    <li><a href="contact.html">문의하기</a></li>
+                    <li><a href="network-remicon.html">네트워크</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Halla Encom Co., Ltd. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.product-card, .application-card, .quality-item, .gallery-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
